@@ -39,8 +39,7 @@ public class RoundService {
 		var match = matchRepository.findByPlayerIdAndFinishedAtIsNull(playerId)
 				.orElseThrow(() -> new RuntimeException("Match not found!"));
 		
-		var roundNotAswered = 
-				roundRepository.findByAnsweredFalseAndMatchId(match.getId());
+		var roundNotAswered = roundRepository.findByAnsweredFalseAndMatchId(match.getId());
 		
 		if(roundNotAswered.isPresent())
 			return roundNotAswered.get();
