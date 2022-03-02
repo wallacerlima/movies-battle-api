@@ -10,6 +10,9 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+.classpath
+.gitattributes
+.project
 
 # External tool builders
 .externalToolBuilders/
