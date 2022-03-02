@@ -53,8 +53,7 @@ public class RoundService {
 		var match = matchRepository.findByPlayerIdAndFinishedAtIsNull(playerId)
 				.orElseThrow(() -> new RuntimeException("Match not found!"));
 		
-		var round = 
-				roundRepository.findByAnsweredFalseAndMatchId(match.getId()).get();
+		var round = roundRepository.findByAnsweredFalseAndMatchId(match.getId()).get();
 		
 		if(validateRoundAnswer(round, movieId)) {
 			round.finishRound(true);
