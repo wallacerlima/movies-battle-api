@@ -51,7 +51,7 @@ You can access OpenAPI documentation through this URL: http://localhost:8080/swa
 - Get a new round - GET: http://localhost:8080/v1/round
 - Answer a round question with movieId - POST: http://localhost:8080/v1/round/answer
     ```json
-        {
-      	    "movieId": "string"
-    	}
+    {
+       "movieId": "string"
+    }
     ```
