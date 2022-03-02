@@ -3,6 +3,7 @@ package com.letscode.moviesbattle.api.v1.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,9 +28,16 @@ public class MatchController {
 	@GetMapping("/start")
     public MatchModel start() {
 		
-		var matchStarted = 
-				matchService.startWith(apiSecurity.getPlayerId());
+		var matchStarted = matchService.startWith(apiSecurity.getPlayerId());
 		
         return matchModelAssembler.toModel(matchStarted);
+    }
+	
+	@PostMapping("/finish")
+    public MatchModel finish() {
+		
+		var matchFinished = matchService.finishWith(apiSecurity.getPlayerId());
+		
+        return matchModelAssembler.toModel(matchFinished);
     }
 }

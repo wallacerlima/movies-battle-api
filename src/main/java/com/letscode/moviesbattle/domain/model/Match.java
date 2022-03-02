@@ -1,6 +1,8 @@
 package com.letscode.moviesbattle.domain.model;
 
 import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,5 +47,26 @@ public class Match {
 	
 	public void addPlayerToMatch(Player player) {
 		this.player = player;
+	}
+	
+	public void mustEndAMatch(List<Round> rounds) {
+		this.remainingAttempts = 0;
+		this.finishedAt = OffsetDateTime.now();
+		this.score = calculateScore(rounds);
+	}
+	
+	private Long calculateScore(List<Round> rounds) {
+		var totalRounds = rounds.size();
+		
+		if(totalRounds == 0) return 0L;
+		
+		var roundsAnswererCorrectly = rounds.stream()
+			      .filter(round -> round.getResult() == RoundResult.CORRECT)
+			      .collect(Collectors.toList());
+		
+		var hitsPercentage = ((roundsAnswererCorrectly.size() * 100) / totalRounds);
+		
+		return Long.valueOf(totalRounds * hitsPercentage);
+		
 	}
 }
