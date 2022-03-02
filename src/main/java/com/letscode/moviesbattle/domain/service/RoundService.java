@@ -36,7 +36,7 @@ public class RoundService {
 		var player = playerRepository.findById(playerId)
 				.orElseThrow(() -> new RuntimeException("Player not found!"));
 		
-		var match = matchRepository.findByPlayerId(playerId)
+		var match = matchRepository.findByPlayerIdAndFinishedAtIsNull(playerId)
 				.orElseThrow(() -> new RuntimeException("Match not found!"));
 		
 		var roundNotAswered = 
@@ -50,7 +50,7 @@ public class RoundService {
 	
 	public Round saveRoundAnswer(String movieId, String playerId) {
 		
-		var match = matchRepository.findByPlayerId(playerId)
+		var match = matchRepository.findByPlayerIdAndFinishedAtIsNull(playerId)
 				.orElseThrow(() -> new RuntimeException("Match not found!"));
 		
 		var round = 

@@ -25,6 +25,9 @@ public class MatchService {
 	@Autowired
 	private RoundRepository roundRepository;
 	
+	@Autowired 
+	private RankingService rankingService;
+	
 	public Match startWith(String playerId) {
 		var player = findPlayer(playerId);
 		
@@ -56,6 +59,8 @@ public class MatchService {
 	private Match finishMatch(Match match) {
 		var rounds = getAllRoundsByMatch(match.getId());
 		match.mustEndAMatch(rounds);
+		
+		rankingService.updateRankingPlayerBy(match);
 		
 		return matchRepository.save(match);
 	}

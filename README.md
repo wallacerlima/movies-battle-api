@@ -41,7 +41,7 @@ You can access OpenAPI documentation through this URL: http://localhost:8080/swa
 ## API description
 ### Authentication
 - All API endpoints require a valid authentication from a player. This API uses a basic authentication with user and password. 
-- Credentials for tests: User: wallacelima, Password: 123456
+- Test credentials: (User: wallacelima, Password: 123456), (User: jaumzin, Password: 123456)
 
 ### Match
 - Start a new match - GET: http://localhost:8080/v1/match/start
@@ -56,3 +56,5 @@ You can access OpenAPI documentation through this URL: http://localhost:8080/swa
        "movieId": "string"
     }
     ```
+### Ranking
+- Get the overall ranking - GET: http://localhost:8080/v1/ranking
